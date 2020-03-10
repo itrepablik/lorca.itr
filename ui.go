@@ -58,7 +58,7 @@ var defaultChromeArgs = []string{
 // string - a temporary directory is created and it will be removed on
 // ui.Close(). You might want to use "--headless" custom CLI argument to test
 // your UI code.
-func New(url, dir string, width, height int, customArgs ...string) (UI, error) {
+func New(url, dir string, width, height int, fullScreen bool, customArgs ...string) (UI, error) {
 	if url == "" {
 		url = "data:text/html,<html></html>"
 	}
@@ -73,15 +73,10 @@ func New(url, dir string, width, height int, customArgs ...string) (UI, error) {
 	args := append(defaultChromeArgs, fmt.Sprintf("--app=%s", url))
 	args = append(args, fmt.Sprintf("--user-data-dir=%s", dir))
 
-	//check for fullscreen in customArgs
-	fullscreen := false
-	for _, c := range customArgs {
-		if c == "--start-maximized" {
-			fullscreen = true
-			break
-		}
-	}
-	if !fullscreen {
+	// Check the full screen option
+	if fullScreen {
+		args = append(args, "--start-maximized") // User enabled the full screen is equal to 'true'
+	} else {
 		args = append(args, fmt.Sprintf("--window-size=%d,%d", width, height))
 	}
 
