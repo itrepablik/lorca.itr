@@ -12,7 +12,7 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/itrepablik/lorca"
+	"github.com/itrepablik/lorca.itr"
 )
 
 // Go types that are bound to the UI must be thread-safe, because each binding
