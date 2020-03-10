@@ -2,7 +2,7 @@
 
 package main
 
-import "github.com/itrepablik/lorca"
+import "github.com/itrepablik/lorca.itr"
 
 func main() {
 	// You can also run "npm build" or webpack here, or compress assets, or
